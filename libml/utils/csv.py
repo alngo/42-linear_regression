@@ -12,4 +12,4 @@ def get_parameters(path):
     except:
         print(f'An unexpected error occured on read_csv')
         sys.exit(1)
-    return parameters.columns.tolist()
+    return parameters

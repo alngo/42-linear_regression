@@ -32,5 +32,5 @@ def test_get_parameters_with_valid_path(capsys):
     path = "./models/test.csv"
     parameters = get_parameters(path)
     captured = capsys.readouterr()
-    assert parameters[0] == "42"
-    assert parameters[1] == "24"
+    assert parameters.columns.tolist()[0] == "42"
+    assert parameters.columns.tolist()[1] == "24"

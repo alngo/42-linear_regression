@@ -1,6 +1,4 @@
-import pandas as pd
 from .utils.csv import get_parameters
-import sys
 
 
 class Reader:
@@ -8,7 +6,7 @@ class Reader:
         """Reader Model"""
         self.args = args
         self.path = path
-        self.parameters = get_parameters(self.path)
+        self.parameters = get_parameters(self.path).columns.tolist()
 
     def linear_regression(self):
         m = self.args[0]
