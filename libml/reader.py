@@ -1,4 +1,4 @@
-from .utils.csv import get_parameters
+from .utils.csv import read_csv
 
 
 class Reader:
@@ -6,7 +6,7 @@ class Reader:
         """Reader Model"""
         self.args = args
         self.path = path
-        self.parameters = get_parameters(self.path).columns.tolist()
+        self.parameters = read_csv(self.path).columns.tolist()
 
     def linear_regression(self):
         m = self.args[0]

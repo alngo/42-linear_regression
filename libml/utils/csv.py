@@ -2,7 +2,7 @@ import pandas as pd
 import sys
 
 
-def get_parameters(path):
+def read_csv(path):
     parameters = None
     try:
         parameters = pd.read_csv(path, sep=',')
