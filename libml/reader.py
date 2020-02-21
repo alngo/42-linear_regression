@@ -1,18 +1,6 @@
 import pandas as pd
+from utils.csv import get_parameters
 import sys
-
-
-def get_parameters(path):
-    parameters = None
-    try:
-        parameters = pd.read_csv(path, sep=',')
-    except FileNotFoundError:
-        print(f'File at path: "{path}" not found')
-        sys.exit()
-    except:
-        print(f'An unexpected error occured on read_csv')
-        sys.exit()
-    return parameters.columns.tolist()
 
 
 class Reader:
