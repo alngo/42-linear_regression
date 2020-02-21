@@ -11,7 +11,9 @@ def arguments():
     parser.add_argument('--out', dest="out", metavar='path',
                         help='must be a valid output path')
     parser.add_argument('--plot', dest="plot", default=False, type=bool,
-                        help='visual mode')
+                        help='plot training')
+    parser.add_argument('--verbose', dest="verbose", default=False, type=bool,
+                        help='verbose')
     parser.add_argument('--epochs', dest="epochs", type=int,
                         help='number of iteration')
     parser.add_argument('--lrate', dest="lrate", type=int,
@@ -24,6 +26,7 @@ def train():
     path = "./datasets/data.csv"
     out = "./models/model.csv"
     plot = False
+    verbose = False
     lrate = 0.0001
     epochs = 1000
     args = arguments()
@@ -34,13 +37,15 @@ def train():
         out = args.out
     if args.plot is not False:
         plot = True
+    if args.verbose is not False:
+        verbose = True
     if args.lrate is not None:
         lrate = args.lrate
     if args.epochs is not None:
         epochs = args.epochs
 
     train = Trainer(data_path=path, out_path=out, epochs=epochs, lrate=lrate,
-                    plot=plot)
+                    verbose=verbose, plot=plot)
 
     train.gradient_descent()
 
