@@ -23,8 +23,8 @@ def predict():
     if args.path is not None:
         path = args.path
     read = Reader(args.mileage, path=path)
-    # prediction = reader.linear_regression(args.mileage, path)
-    # print(f"Estimated price: {prediction}")
+    prediction = read.linear_regression()
+    print(f"Estimated price: {prediction}")
 
 
 if __name__ == "__main__":
