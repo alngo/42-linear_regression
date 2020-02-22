@@ -15,7 +15,7 @@ def test_get_parameters_with_empty_file(capsys):
         path = "./models/empty.csv"
         read_csv(path)
     captured = capsys.readouterr()
-    assert captured.out == 'File at path: "./models/empty.csv" not found\n'
+    assert captured.out == 'An unexpected error occured on read_csv\n'
     assert pytest_wrapped_e.value.code == 1
 
 
