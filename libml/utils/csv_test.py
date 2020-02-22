@@ -30,7 +30,7 @@ def test_get_parameters_with_invalid_path(capsys):
 
 def test_get_parameters_with_valid_path(capsys):
     path = "./models/test.csv"
-    parameters = read_csv(path).columns.tolist()
+    df = read_csv(path)
     captured = capsys.readouterr()
-    assert parameters[0] == "42"
-    assert parameters[1] == "24"
+    assert df['theta0'][0] == 0
+    assert df['theta1'][0] == 2

@@ -5,7 +5,7 @@ import sys
 def read_csv(path):
     parameters = None
     try:
-        parameters = pd.read_csv(path, sep=',')
+        parameters = pd.read_csv(path)
     except FileNotFoundError:
         print(f'File at path: "{path}" not found')
         sys.exit(1)
@@ -15,10 +15,6 @@ def read_csv(path):
     return parameters
 
 
-def write_csv(array):
-    try:
-        print(f"{array}")
-        df = pd.dataframe(columns=array)
-    except:
-        print(f'An unexpected error occured on write_csv')
-        sys.exit(1)
+def write_csv(data, output):
+    df = pd.DataFrame(data=data, index=[0])
+    df.to_csv(output, index=None)

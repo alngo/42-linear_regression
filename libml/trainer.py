@@ -21,8 +21,10 @@ class Trainer:
         p0 = np.float32(0.0)
         p1 = np.float32(0.0)
 
-        X = normalize(self.data.iloc[:, 0].to_numpy(dtype=np.float32))
-        y = normalize(self.data.iloc[:, 1].to_numpy(dtype=np.float32))
+        [X, Xmin, Xmax] = normalize(
+            self.data.iloc[:, 0].to_numpy(dtype=np.float32))
+        [y, ymin, ymax] = normalize(
+            self.data.iloc[:, 1].to_numpy(dtype=np.float32))
 
         if (self.plot):
             plt.scatter(X, y)
@@ -39,8 +41,11 @@ class Trainer:
             p0 = tmp0
             p1 = tmp1
             if self.verbose:
-                print(f"On iteration {i}: theta0: {p0} - theta1: {p1}")
-                print(
-                    f"Mean squared error: {mean_squared_error(p0, p1, X, y)}")
+                print(f"On iteration {i}: theta0: {p0} - theta1: {p1} \
+                    || Mean squared error: {mean_squared_error(p0, p1, X, y)}")
 
-        write_csv([p0, p1])
+        data = {'theta0': p0, 'theta1': p1,
+                'Xmin': Xmin, 'Xmax': Xmax,
+                'ymin': ymin, 'ymax': ymax, }
+
+        write_csv(data=data, output=self.out)
