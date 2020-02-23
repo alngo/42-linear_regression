@@ -25,7 +25,7 @@ def train():
     out = "./models/model.csv"
     plot = False
     verbose = False
-    lrate = 0.1
+    lrate = 0.5
     epochs = 1000
     args = arguments()
 

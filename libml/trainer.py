@@ -7,7 +7,7 @@ plt.rcParams['figure.figsize'] = (5.0, 5.0)
 
 
 class Trainer:
-    def __init__(self, data_path=None, out_path=None, epochs=1000, lrate=0.1,
+    def __init__(self, data_path=None, out_path=None, epochs=1000, lrate=0.5,
                  verbose=False, plot=False):
         """Trainer Model"""
         self.data_path = data_path
@@ -21,6 +21,7 @@ class Trainer:
     def gradient_descent(self):
         p0 = np.float32(0.0)
         p1 = np.float32(0.0)
+        cost = []
 
         [X, Xmin, Xmax] = normalize(
             self.data.iloc[:, 0].to_numpy(dtype=np.float32))
@@ -37,9 +38,10 @@ class Trainer:
             tmp1 = p1 - lrate * (d * sum((hyp - y) * X))
             p0 = tmp0
             p1 = tmp1
+            cost.append(mean_squared_error(p0, p1, X, y))
             print(f"theta0: {p0} - theta1: {p1}")
             if (self.plot):
-                plot_gradient_descent(X, y, p0, p1, i)
+                plot_gradient_descent(X, y, p0, p1, cost)
         if (self.plot):
             plt.show()
 
