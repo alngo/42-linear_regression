@@ -1,6 +1,6 @@
-import pandas as pd
-from .utils.csv import get_parameters
-import sys
+from .utils.csv import read_csv
+from .utils.maths import scale, upscale
+import numpy as np
 
 
 class Reader:
@@ -8,10 +8,11 @@ class Reader:
         """Reader Model"""
         self.args = args
         self.path = path
-        self.parameters = get_parameters(self.path)
+        self.df = read_csv(self.path)
 
     def linear_regression(self):
-        m = self.args[0]
-        p0 = int(self.parameters[0])
-        p1 = int(self.parameters[1])
-        return p0 + m * p1
+        m = scale(self.args[0], self.df['Xmin'], self.df['Xmax'])
+        p0 = np.float64(self.df['theta0'][0])
+        p1 = np.float64(self.df['theta1'][0])
+        prediction = p0 + (m * p1)
+        return int(upscale(prediction, self.df['ymin'], self.df['ymax']))

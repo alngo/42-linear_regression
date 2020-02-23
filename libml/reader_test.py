@@ -6,11 +6,11 @@ def test_reader_init():
     r = Reader(1, path=path)
     assert r.args[0] == 1
     assert r.path == path
-    assert r.parameters[0] == "42"
-    assert r.parameters[1] == "24"
+    assert r.df['theta0'][0] == 0
+    assert r.df['theta1'][0] == 2
 
 
 def test_reader_linear_regression():
     r = Reader(1, path="./models/test.csv")
     predicted = r.linear_regression()
-    assert predicted == 66
+    assert predicted == 2
