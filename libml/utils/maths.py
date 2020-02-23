@@ -14,8 +14,8 @@ def normalize(list):
 
 
 def scale(value, min, max):
-    return np.float64((value * (max - min)) + min)
+    return np.float64((value - min) / (max - min))
 
 
 def upscale(value, min, max):
-    return np.float64((value - min) / (max - min))
+    return np.float64((value * (max - min)) + min)

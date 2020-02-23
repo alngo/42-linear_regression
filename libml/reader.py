@@ -14,5 +14,5 @@ class Reader:
         m = scale(self.args[0], self.df['Xmin'], self.df['Xmax'])
         p0 = np.float64(self.df['theta0'][0])
         p1 = np.float64(self.df['theta1'][0])
-        prediction = p0 + m * p1
+        prediction = p0 + (m * p1)
         return int(upscale(prediction, self.df['ymin'], self.df['ymax']))
