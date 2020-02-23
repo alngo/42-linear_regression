@@ -12,11 +12,9 @@ def arguments():
                         help='must be a valid output path')
     parser.add_argument('--plot', dest="plot", default=False, type=bool,
                         help='plot training')
-    parser.add_argument('--verbose', dest="verbose", default=False, type=bool,
-                        help='verbose')
     parser.add_argument('--epochs', dest="epochs", type=int,
                         help='number of iteration')
-    parser.add_argument('--lrate', dest="lrate", type=int,
+    parser.add_argument('--lrate', dest="lrate", type=float,
                         help='number of iteration')
     args = parser.parse_args()
     return args
@@ -27,7 +25,7 @@ def train():
     out = "./models/model.csv"
     plot = False
     verbose = False
-    lrate = 0.0001
+    lrate = 0.1
     epochs = 1000
     args = arguments()
 
@@ -37,8 +35,6 @@ def train():
         out = args.out
     if args.plot is not False:
         plot = True
-    if args.verbose is not False:
-        verbose = True
     if args.lrate is not None:
         lrate = args.lrate
     if args.epochs is not None:

@@ -1,12 +1,13 @@
 import numpy as np
 from .utils.csv import read_csv, write_csv
+from .utils.plot import plot_gradient_descent
 from .utils.maths import mean_squared_error, normalize
 import matplotlib.pyplot as plt
 plt.rcParams['figure.figsize'] = (5.0, 5.0)
 
 
 class Trainer:
-    def __init__(self, data_path=None, out_path=None, epochs=1000, lrate=0.001,
+    def __init__(self, data_path=None, out_path=None, epochs=1000, lrate=0.1,
                  verbose=False, plot=False):
         """Trainer Model"""
         self.data_path = data_path
@@ -26,10 +27,6 @@ class Trainer:
         [y, ymin, ymax] = normalize(
             self.data.iloc[:, 1].to_numpy(dtype=np.float32))
 
-        if (self.plot):
-            plt.scatter(X, y)
-            plt.show()
-
         m = np.float32(len(X))
         d = np.float32(1.0 / m)
         lrate = np.float32(self.lrate)
@@ -40,9 +37,13 @@ class Trainer:
             tmp1 = p1 - lrate * (d * sum((hyp - y) * X))
             p0 = tmp0
             p1 = tmp1
-            if self.verbose:
-                print(f"On iteration {i}: theta0: {p0} - theta1: {p1} \
-                    || Mean squared error: {mean_squared_error(p0, p1, X, y)}")
+            print(f"theta0: {p0} - theta1: {p1}")
+            if (self.plot):
+                plot_gradient_descent(X, y, p0, p1, i)
+        if (self.plot):
+            plt.show()
+
+        print(f"Mean squared error: {mean_squared_error(p0, p1, X, y)}")
 
         data = {'theta0': p0, 'theta1': p1,
                 'Xmin': Xmin, 'Xmax': Xmax,
