@@ -3,14 +3,21 @@ import numpy as np
 
 
 def plot_gradient_descent(X, y, p0, p1, cost):
-    plt.clf()
-    plt.subplot(2, 1, 1)
-    plt.scatter(X, y)
-    plt.plot(X, p0 + (p1 * X), "r--")
-    plt.title('title')
+    plt.rcParams['figure.figsize'] = (10.0, 5.0)
 
-    plt.subplot(2, 1, 2)
-    plt.plot(cost, '.-')
-    plt.title('mean_squared_error')
+    for i in range(len(cost)):
+        plt.clf()
+        plt.subplot(1, 2, 1)
+        plt.scatter(X, y, label="data")
+        plt.plot(X, p0[i] + (p1[i] * X), "r--", label="hypothesis")
+        plt.title('Gradient descent')
+        plt.legend()
 
-    plt.pause(0.01)
+        plt.subplot(1, 2, 2)
+        plt.plot(cost[0 : i], '.-', label="Mean squared error", color='m')
+        plt.title('Cost function')
+        plt.legend()
+
+        plt.pause(0.0001)
+
+    plt.show()
