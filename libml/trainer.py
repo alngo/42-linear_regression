@@ -6,12 +6,12 @@
 #    By: alngo <alngo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 09:43:48 by alngo             #+#    #+#              #
-#    Updated: 2020/02/24 10:14:45 by alngo            ###   ########.fr        #
+#    Updated: 2020/02/24 11:05:18 by alngo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import numpy as np
-from .utils.csv import read_csv, write_csv
+from .utils.csv import read_csv, write_csv, check_csv
 from .utils.plot import plot_gradient_descent
 from .utils.maths import mean_squared_error, normalize
 import matplotlib.pyplot as plt
@@ -29,6 +29,7 @@ class Trainer:
         self.data = read_csv(self.data_path)
 
 
+    @check_csv('km', 'price')
     def gradient_descent(self):
         p0 = np.float32(0.0)
         p1 = np.float32(0.0)

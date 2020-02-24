@@ -19,7 +19,7 @@ p1 = tmp1
 A trainer which train a model given an datasets
 > The dataset must follow this pattern:
 > ```
-> columns: [X, y]
+> columns: [km, price]
 > ```
 
 A reader which predict price based on a model
