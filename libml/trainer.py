@@ -1,9 +1,20 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    trainer.py                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: alngo <alngo@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/02/24 09:43:48 by alngo             #+#    #+#              #
+#    Updated: 2020/02/24 09:43:49 by alngo            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 import numpy as np
 from .utils.csv import read_csv, write_csv
 from .utils.plot import plot_gradient_descent
 from .utils.maths import mean_squared_error, normalize
 import matplotlib.pyplot as plt
-plt.rcParams['figure.figsize'] = (10.0, 5.0)
 
 
 class Trainer:

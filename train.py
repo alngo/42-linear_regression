@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    train.py                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: alngo <alngo@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/02/24 09:43:41 by alngo             #+#    #+#              #
+#    Updated: 2020/02/24 09:43:42 by alngo            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 import argparse
 from libml.trainer import Trainer
 
@@ -33,12 +45,12 @@ def train():
         path = args.path
     if args.out is not None:
         out = args.out
-    if args.plot is not False:
-        plot = True
     if args.lrate is not None:
         lrate = args.lrate
     if args.epochs is not None:
         epochs = args.epochs
+    if args.plot is not False:
+        plot = True
 
     train = Trainer(data_path=path, out_path=out, epochs=epochs, lrate=lrate,
                     verbose=verbose, plot=plot)
