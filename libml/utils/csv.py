@@ -6,7 +6,7 @@
 #    By: alngo <alngo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 09:44:54 by alngo             #+#    #+#              #
-#    Updated: 2020/02/24 11:07:13 by alngo            ###   ########.fr        #
+#    Updated: 2020/02/24 11:07:58 by alngo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ def read_csv(path):
 def write_csv(data, output):
     df = pd.DataFrame(data=data, index=[0])
     df.to_csv(output, index=None)
+
 
 def check_csv(*fields):
     def wrapper(func):
