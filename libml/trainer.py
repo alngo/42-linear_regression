@@ -1,9 +1,20 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    trainer.py                                         :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: alngo <alngo@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/02/24 09:43:48 by alngo             #+#    #+#              #
+#    Updated: 2020/02/24 09:43:49 by alngo            ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 import numpy as np
 from .utils.csv import read_csv, write_csv
 from .utils.plot import plot_gradient_descent
 from .utils.maths import mean_squared_error, normalize
 import matplotlib.pyplot as plt
-plt.rcParams['figure.figsize'] = (5.0, 5.0)
 
 
 class Trainer:
@@ -22,6 +33,8 @@ class Trainer:
         p0 = np.float32(0.0)
         p1 = np.float32(0.0)
         cost = []
+        p0_array = []
+        p1_array = []
 
         [X, Xmin, Xmax] = normalize(
             self.data.iloc[:, 0].to_numpy(dtype=np.float32))
@@ -38,12 +51,11 @@ class Trainer:
             tmp1 = p1 - lrate * (d * sum((hyp - y) * X))
             p0 = tmp0
             p1 = tmp1
+            p0_array.append(p0)
+            p1_array.append(p1)
             cost.append(mean_squared_error(p0, p1, X, y))
             print(f"theta0: {p0} - theta1: {p1}")
-            if (self.plot):
-                plot_gradient_descent(X, y, p0, p1, cost)
-        if (self.plot):
-            plt.show()
+
 
         print(f"Mean squared error: {mean_squared_error(p0, p1, X, y)}")
 
@@ -52,3 +64,6 @@ class Trainer:
                 'ymin': ymin, 'ymax': ymax, }
 
         write_csv(data=data, output=self.out)
+
+        if (self.plot):
+            plot_gradient_descent(X, y, p0_array, p1_array, cost)
