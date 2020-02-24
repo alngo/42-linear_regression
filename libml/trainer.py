@@ -6,7 +6,7 @@
 #    By: alngo <alngo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 09:43:48 by alngo             #+#    #+#              #
-#    Updated: 2020/02/24 09:43:49 by alngo            ###   ########.fr        #
+#    Updated: 2020/02/24 10:14:45 by alngo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,15 +19,15 @@ import matplotlib.pyplot as plt
 
 class Trainer:
     def __init__(self, data_path=None, out_path=None, epochs=1000, lrate=0.5,
-                 verbose=False, plot=False):
+                 plot=False):
         """Trainer Model"""
         self.data_path = data_path
         self.out = out_path
         self.epochs = epochs
         self.lrate = lrate
         self.plot = plot
-        self.verbose = verbose
         self.data = read_csv(self.data_path)
+
 
     def gradient_descent(self):
         p0 = np.float32(0.0)
@@ -56,14 +56,16 @@ class Trainer:
             cost.append(mean_squared_error(p0, p1, X, y))
             print(f"theta0: {p0} - theta1: {p1}")
 
-
         print(f"Mean squared error: {mean_squared_error(p0, p1, X, y)}")
 
         data = {'theta0': p0, 'theta1': p1,
                 'Xmin': Xmin, 'Xmax': Xmax,
                 'ymin': ymin, 'ymax': ymax, }
 
-        write_csv(data=data, output=self.out)
+        if (self.out):
+            write_csv(data=data, output=self.out)
 
         if (self.plot):
             plot_gradient_descent(X, y, p0_array, p1_array, cost)
+
+        return data
