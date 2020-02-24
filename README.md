@@ -1,4 +1,4 @@
-## linear_regression :rocket:
+## linear_regression :rocket:   [![Build Status](https://travis-ci.org/alngo/linear_regression.svg?branch=master)](https://travis-ci.org/alngo/linear_regression)
 Machine learning introduction
 
 ### Hypothesis :taxi:
