@@ -6,7 +6,7 @@
 #    By: alngo <alngo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 09:43:41 by alngo             #+#    #+#              #
-#    Updated: 2020/02/24 09:43:42 by alngo            ###   ########.fr        #
+#    Updated: 2020/02/24 10:12:24 by alngo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,6 @@ def train():
     path = "./datasets/data.csv"
     out = "./models/model.csv"
     plot = False
-    verbose = False
     lrate = 0.5
     epochs = 1000
     args = arguments()
@@ -53,7 +52,7 @@ def train():
         plot = True
 
     train = Trainer(data_path=path, out_path=out, epochs=epochs, lrate=lrate,
-                    verbose=verbose, plot=plot)
+                    plot=plot)
 
     train.gradient_descent()
 
