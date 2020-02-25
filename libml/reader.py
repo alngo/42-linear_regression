@@ -6,7 +6,7 @@
 #    By: alngo <alngo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 09:44:24 by alngo             #+#    #+#              #
-#    Updated: 2020/02/25 14:33:33 by alngo            ###   ########.fr        #
+#    Updated: 2020/02/25 15:15:04 by alngo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,12 +25,14 @@ class Reader:
 
     @check_csv('theta0', 'theta1', 'Xmin', 'Xmax', 'ymin', 'ymax')
     def linear_regression(self):
-        m = scale(self.args[0], self.data['Xmin'][0], self.data['Xmax'][0])
-        p0 = np.float64(self.data['theta0'][0])
-        p1 = np.float64(self.data['theta1'][0])
-        prediction = p0 + (m * p1)
-        if prediction != 0:
-            return int(upscale(prediction, self.data['ymin'][0],
-                self.data['ymax'][0]))
-        else:
-            return 0
+        mileage = self.args[0]
+        p0 = np.float(self.data['theta0'][0])
+        p1 = np.float(self.data['theta1'][0])
+        Xmin = np.float(self.data['Xmin'][0])
+        Xmax = np.float(self.data['Xmax'][0])
+        ymin = np.float(self.data['ymin'][0])
+        ymax = np.float(self.data['ymax'][0])
+
+        m = scale(mileage, Xmin, Xmax)
+        predict = p0 + (m * p1)
+        return int(upscale(predict, ymin, ymax))
