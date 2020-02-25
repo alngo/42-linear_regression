@@ -6,7 +6,7 @@
 #    By: alngo <alngo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 09:45:07 by alngo             #+#    #+#              #
-#    Updated: 2020/02/25 14:39:30 by alngo            ###   ########.fr        #
+#    Updated: 2020/02/25 14:53:27 by alngo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,17 @@ def normalize(list):
 
 
 def scale(value, min, max):
-    return np.float64((value - min) / (max - min))
+    res = 0.0
+    try:
+        res = np.float64((value - min) / (max - min))
+    except ZeroDivisionError:
+        print("Zero division error")
+    except:
+        return res
 
 
 def upscale(value, min, max):
+    print(value)
+    print(min)
+    print(max)
     return np.float64((value * (max - min)) + min)
