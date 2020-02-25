@@ -6,11 +6,12 @@
 #    By: alngo <alngo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 09:43:48 by alngo             #+#    #+#              #
-#    Updated: 2020/02/24 11:05:18 by alngo            ###   ########.fr        #
+#    Updated: 2020/02/25 12:16:54 by alngo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 import numpy as np
+import sys
 from .utils.csv import read_csv, write_csv, check_csv
 from .utils.plot import plot_gradient_descent
 from .utils.maths import mean_squared_error, normalize
@@ -25,6 +26,9 @@ class Trainer:
         self.out = out_path
         self.epochs = epochs
         self.lrate = lrate
+        if lrate < 0 or lrate > 1:
+            print(f"Invalid learning rate: expect a value between 0 and 1")
+            sys.exit(1)
         self.plot = plot
         self.data = read_csv(self.data_path)
 
