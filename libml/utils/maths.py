@@ -6,7 +6,7 @@
 #    By: alngo <alngo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 09:45:07 by alngo             #+#    #+#              #
-#    Updated: 2020/02/25 13:02:01 by alngo            ###   ########.fr        #
+#    Updated: 2020/02/25 14:39:30 by alngo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,6 @@ def normalize(list):
 
 
 def scale(value, min, max):
-    if min == 0 and max == 0:
-        return np.float(0.0)
     return np.float64((value - min) / (max - min))
 
 
