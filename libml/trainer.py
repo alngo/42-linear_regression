@@ -6,7 +6,7 @@
 #    By: alngo <alngo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 09:43:48 by alngo             #+#    #+#              #
-#    Updated: 2020/02/25 12:16:54 by alngo            ###   ########.fr        #
+#    Updated: 2020/03/02 10:19:17 by alngo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ import numpy as np
 import sys
 from .utils.csv import read_csv, write_csv, check_csv
 from .utils.plot import plot_gradient_descent
-from .utils.maths import mean_squared_error, normalize
+from .utils.maths import mean_squared_error, normalize, denormalize_theta
 import matplotlib.pyplot as plt
 
 
@@ -63,9 +63,9 @@ class Trainer:
 
         print(f"Mean squared error: {mean_squared_error(p0, p1, X, y)}")
 
-        data = {'theta0': p0, 'theta1': p1,
-                'Xmin': Xmin, 'Xmax': Xmax,
-                'ymin': ymin, 'ymax': ymax, }
+        p0, p1 = denormalize_theta(self.data, X, p0, p1, ymin, ymax)
+
+        data = {'theta0': p0, 'theta1': p1}
 
         if (self.out):
             write_csv(data=data, output=self.out)
