@@ -6,7 +6,7 @@
 #    By: alngo <alngo@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/24 09:45:07 by alngo             #+#    #+#              #
-#    Updated: 2020/03/02 10:16:00 by alngo            ###   ########.fr        #
+#    Updated: 2020/03/02 10:20:46 by alngo            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ def denormalize_theta(dataset, normalized_dataset, theta0, theta1, min, max):
     hy0 = theta0 + (nx0 * theta1)
     hy1 = theta0 + (nx1 * theta1)
 
-    p0 = (x1 / (x1 - x0)) * upscale(hy0, min, max) - (x0 / x1 * upscale(hy1, min, max))
+    p0 = (x1 / (x1 - x0)) * (upscale(hy0, min, max) - (x0 / x1 * upscale(hy1, min, max)))
     p1 = (y0 - p0) / x0
 
 
